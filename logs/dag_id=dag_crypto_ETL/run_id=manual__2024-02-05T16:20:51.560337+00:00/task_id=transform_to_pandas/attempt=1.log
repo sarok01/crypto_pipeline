@@ -1,0 +1,32 @@
+[2024-02-05T16:20:55.025+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:20:51.560337+00:00 [queued]>
+[2024-02-05T16:20:55.038+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:20:51.560337+00:00 [queued]>
+[2024-02-05T16:20:55.039+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2024-02-05T16:20:55.056+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_to_pandas> on 2024-02-05 16:20:51.560337+00:00
+[2024-02-05T16:20:55.061+0000] {standard_task_runner.py:60} INFO - Started process 1776 to run task
+[2024-02-05T16:20:55.064+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dag_crypto_ETL', 'transform_to_pandas', 'manual__2024-02-05T16:20:51.560337+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/dag_v1.py', '--cfg-path', '/tmp/tmpyfln3l_1']
+[2024-02-05T16:20:55.068+0000] {standard_task_runner.py:88} INFO - Job 13: Subtask transform_to_pandas
+[2024-02-05T16:20:55.128+0000] {task_command.py:423} INFO - Running <TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:20:51.560337+00:00 [running]> on host 0fd5da028511
+[2024-02-05T16:20:55.423+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_crypto_ETL' AIRFLOW_CTX_TASK_ID='transform_to_pandas' AIRFLOW_CTX_EXECUTION_DATE='2024-02-05T16:20:51.560337+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-05T16:20:51.560337+00:00'
+[2024-02-05T16:20:55.449+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_v1.py", line 14, in transform
+    df = pd.DataFrame(data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 709, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 481, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 115, in arrays_to_mgr
+    index = _extract_index(arrays)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 658, in _extract_index
+    raise ValueError(
+ValueError: Mixing dicts with non-Series may lead to ambiguous ordering.
+[2024-02-05T16:20:55.465+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=dag_crypto_ETL, task_id=transform_to_pandas, execution_date=20240205T162051, start_date=20240205T162055, end_date=20240205T162055
+[2024-02-05T16:20:55.482+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 13 for task transform_to_pandas (Mixing dicts with non-Series may lead to ambiguous ordering.; 1776)
+[2024-02-05T16:20:55.521+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-05T16:20:55.544+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,24 @@
+[2024-02-05T16:10:26.138+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:10:23.104572+00:00 [queued]>
+[2024-02-05T16:10:26.150+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:10:23.104572+00:00 [queued]>
+[2024-02-05T16:10:26.151+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2024-02-05T16:10:26.166+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_to_pandas> on 2024-02-05 16:10:23.104572+00:00
+[2024-02-05T16:10:26.172+0000] {standard_task_runner.py:60} INFO - Started process 1512 to run task
+[2024-02-05T16:10:26.176+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dag_crypto_ETL', 'transform_to_pandas', 'manual__2024-02-05T16:10:23.104572+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/dag_v1.py', '--cfg-path', '/tmp/tmpgqhr_57s']
+[2024-02-05T16:10:26.179+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask transform_to_pandas
+[2024-02-05T16:10:26.238+0000] {task_command.py:423} INFO - Running <TaskInstance: dag_crypto_ETL.transform_to_pandas manual__2024-02-05T16:10:23.104572+00:00 [running]> on host 0fd5da028511
+[2024-02-05T16:10:26.481+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_crypto_ETL' AIRFLOW_CTX_TASK_ID='transform_to_pandas' AIRFLOW_CTX_EXECUTION_DATE='2024-02-05T16:10:23.104572+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-05T16:10:23.104572+00:00'
+[2024-02-05T16:10:26.482+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_v1.py", line 12, in transform
+    data = ti.xcoms_pull(task_ids='fetch_data')
+AttributeError: 'TaskInstance' object has no attribute 'xcoms_pull'
+[2024-02-05T16:10:26.492+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=dag_crypto_ETL, task_id=transform_to_pandas, execution_date=20240205T161023, start_date=20240205T161026, end_date=20240205T161026
+[2024-02-05T16:10:26.508+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 9 for task transform_to_pandas ('TaskInstance' object has no attribute 'xcoms_pull'; 1512)
+[2024-02-05T16:10:26.550+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-05T16:10:26.573+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
